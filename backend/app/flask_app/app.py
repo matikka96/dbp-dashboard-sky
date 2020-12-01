@@ -1,3 +1,4 @@
+from datetime import date
 from flask import Flask, jsonify, make_response
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
@@ -24,16 +25,35 @@ def custom_error(message, status_code):
 class AnalyticsDashboard(db.Model):
     __tablename__ = 'analytics_dashboard'
     index = db.Column(db.Integer, primary_key=True)
+    air_moisture_percent = db.Column(db.Integer)
+    CO2 = db.Column(db.Float)
+    people_count = db.Column(db.Integer)
+    inside_temperature = db.Column(db.Float)
+    outside_temperature = db.Column(db.Float)
+    power_usage = db.Column(db.Float)
+    solar_panel_generation = db.Column(db.Float)
+    air_quality_index = db.Column(db.Integer)
+    elevators_in_use_avg = db.Column(db.Integer)
+    datetime = db.Column(db.DateTime)
     
-    def __init__(self, name, index):
-        self.name = name
+    def __init__(self, index, air_moisture_percent, CO2, people_count, inside_temperature, outside_temperature, power_usage, solar_panel_generation, air_quality_index, elevators_in_use_avg, datetime):
         self.index = index
+        self.air_moisture_percent = air_moisture_percent
+        self.CO2 = CO2
+        self.people_count = people_count
+        self.inside_temperature = inside_temperature
+        self.outside_temperature = outside_temperature
+        self.power_usage = power_usage
+        self.solar_panel_generation = solar_panel_generation
+        self.air_quality_index = air_quality_index
+        self.elevators_in_use_avg = elevators_in_use_avg
+        self.datetime = datetime
 
     
-#PAA Schema
+# Schema
 class AnalyticsDashboardSchemaAll(ma.Schema):
     class Meta:
-        fields = ("name","index")
+        fields = ("index", "air_moisture_percent", "CO2","people_count","inside_temperature","outside_temperature", "power_usage","solar_panel_generation","air_quality_index","elevators_in_use_avg","datetime")
         model = AnalyticsDashboard
 
 #Init schema
