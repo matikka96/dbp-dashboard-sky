@@ -1,7 +1,6 @@
-# dbp-sky
+School assignment for cource Digital Business Platforms
 
 Live demo: https://matikka96.github.io/dbp-sky/
-School assignment for cource Digital Business Platforms
 
 ## Dashboard
 
